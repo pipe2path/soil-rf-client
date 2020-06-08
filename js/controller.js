@@ -34,12 +34,17 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             let avgReading = 0;
             return $http.get(url).then(function (response) {
                 let readings = response.data;
-                let last10 = readings.slice(Math.max(readings.length - 10, 0));
-                readingsData.latestReadings = last10;
-                for(let i=0; i<last10.length-1; i++){
-                    avgReading += last10[i].soil_moisture;
+
+                // average readings in last 24 hours.. 48 readings
+                let latest = readings.slice(Math.max(readings.length - 48, 0));
+
+                readingsData.latestReadings = latest;
+                for(let i=0; i<latest.length-1; i++){
+                    avgReading += latest[i].soil_moisture;
                 }
-                avgReading = avgReading/10;
+                avgReading = avgReading/48;
+
+                // highest reading recorded 100%
                 let avgReadingPercent = ((3940-avgReading)/3940)*100;
                 readingsData.avgReading = avgReadingPercent;
                 return readingsData;       // get percent
