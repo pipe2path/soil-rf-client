@@ -36,7 +36,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                 let readings = response.data;
 
                 // average readings in last 24 hours.. 48 readings
-                let latest = readings.slice(Math.max(readings.length - 48, 0));
+                let latest = readings.slice(Math.min( 48, 0));
 
                 readingsData.latestReadings = latest;
                 for(let i=0; i<latest.length-1; i++){
