@@ -40,7 +40,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                     avgReading += last10[i].soil_moisture;
                 }
                 avgReading = avgReading/10;
-                let avgReadingPercent = ((3500-avgReading)/3500)*100;
+                let avgReadingPercent = ((3940-avgReading)/3940)*100;
                 readingsData.avgReading = avgReadingPercent;
                 return readingsData;       // get percent
             });
