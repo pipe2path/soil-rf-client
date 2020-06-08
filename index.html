@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="soilMoistureApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../../favicon.ico">
+
+	<title>Soil Moisture Dashboard</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/flipclock.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+</head>
+
+<style>
+	.headerlbl { color: white}
+	.panel label{ color: #31b0d5; font-size: 32px;}
+	.smallPrint label{ color: #080808; font-size:16px}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		width: 95%;
+		/* Set the fixed height of the footer here */
+		height: 20px;
+		background-color: #f5f5f5;
+	}
+
+	table, th , td {
+		border: 1px solid grey;
+		border-collapse: collapse;
+		padding: 5px;
+	}
+</style>
+
+<body>
+
+<div ng-controller="DashboardCtrl">
+	<div class="container">
+		<div class="panel-body text-center">
+			<ui-knob value="value" options="options"></ui-knob>
+		</div>
+		<br/>
+		<div class="col-md-6">
+		</div>
+		<div>
+			<table style="width:100%">
+				<thead>
+				<tr>
+					<th>Reading</th>
+					<th>Time</th>
+				</tr>
+				</thead>
+				<tbody>
+				<p>{{checkResult}}</p>
+				<tr dir-paginate="r in latestReadings | itemsPerPage : 5">
+					<td>{{r.soil_moisture}}</td><td>{{r.date_time_stamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+				</tr>
+				</tbody>
+			</table>
+			<dir-pagination-controls
+					max-size="5"
+					direction-links="false"
+					boundary-links="true" >
+			</dir-pagination-controls>
+		</div>
+		<span us-spinner spinner-on="showSpinner"></span>
+		<footer class="footer">
+			<p>Menezes Family &copy; 2020</p>
+		</footer>
+
+	</div> <!-- /container -->
+</div> <!-- ng-controller -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js"></script>
+<script src="bower_components/ng-knob/dist/ng-knob.min.js"></script>
+<script src="js/controller.js"></script>
+<script src="bower_components/angular-spinner/dist/angular-spinner.min.js"></script>
+<script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+
+</body>
+</html>
