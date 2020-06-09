@@ -43,13 +43,13 @@
 
 <body>
 
-<div ng-controller="DashboardCtrl">
+<div ng-controller="DashboardCtrl" data-ng-init="refreshReadings()">
 	<div class="container">
 		<div class="panel-body text-center">
 			<ui-knob value="value" options="options"></ui-knob>
 		</div>
 		<div class="text-left">
-			<button class="btn btn-default text-left" ng-click="location.reload()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+			<button class="btn btn-default text-left" ng-click="refreshReadings()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 		</div>
 		<div class="col-md-6">
 		</div>

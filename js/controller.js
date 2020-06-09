@@ -20,12 +20,14 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
             barColor: '#2CC185'
         };
 
-        getAvgReading().then(function(data){
-            $timeout(function() {
-                $scope.value = data.avgReading; // load data from server
-                $scope.latestReadings = data.latestReadings;
-            }, 1000);
-        });
+        $scope.refreshReadings = () => {
+            getAvgReading().then(function(data){
+                $timeout(function() {
+                    $scope.value = data.avgReading; // load data from server
+                    $scope.latestReadings = data.latestReadings;
+                }, 1000);
+            });
+        }
 
         let readingsData = {'avgReading': 0, 'latestReadings': {}};
         function getAvgReading(){
