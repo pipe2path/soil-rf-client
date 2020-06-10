@@ -47,7 +47,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                 avgReading = avgReading/48;
 
                 // highest reading recorded 100%
-                let avgReadingPercent = ((3940-avgReading)/3940)*100;
+                let avgReadingPercent = ((avgReading - 1857)/2083)*100;
                 readingsData.avgReading = avgReadingPercent;
                 return readingsData;       // get percent
             });
