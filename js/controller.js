@@ -43,7 +43,7 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
                 let latest = readings.slice(0, 48);
 
                 readingsData.latestReadings = latest;
-                for(let i=0; i<latest.length-1; i++){
+                for(let i=0; i<latest.length; i++){
                     totalReading += latest[i].soil_moisture;
                 }
                 avgReading = totalReading/48;       // assuming a reading every 30 minutes...
