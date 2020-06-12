@@ -33,7 +33,9 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
         function getAvgReading(){
             var url = 'https://mzs-ble-temp-service.herokuapp.com/soil'
             //let url = 'http://localhost:3075/soil'
+            let totalReading = 0;
             let avgReading = 0;
+
             return $http.get(url).then(function (response) {
                 let readings = response.data;
 
@@ -42,12 +44,12 @@ app.controller('DashboardCtrl', ['$scope', '$timeout', '$http', '$q', '$filter',
 
                 readingsData.latestReadings = latest;
                 for(let i=0; i<latest.length-1; i++){
-                    avgReading += latest[i].soil_moisture;
+                    totalReading += latest[i].soil_moisture;
                 }
-                avgReading = avgReading/48;
+                avgReading = totalReading/48;       // assuming a reading every 30 minutes...
 
                 // highest reading recorded 100%
-                let avgReadingPercent = ((avgReading - 1857)/2083)*100;
+                let avgReadingPercent = 100 - ((avgReading - 2000)/1583)*100;
                 readingsData.avgReading = avgReadingPercent;
                 return readingsData;       // get percent
             });
