@@ -63,7 +63,7 @@
 				</thead>
 				<tbody>
 				<p>{{checkResult}}</p>
-				<tr dir-paginate="r in latestReadings | itemsPerPage : 6">
+				<tr dir-paginate="r in latestReadings | itemsPerPage : 5">
 					<td>{{r.soil_moisture}}</td><td>{{r.date_time_stamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 				</tr>
 				</tbody>
